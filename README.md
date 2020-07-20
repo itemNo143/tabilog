@@ -1,24 +1,79 @@
-# README
+# TabiLog DB 設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column   | Type   | Options     |
+| -------- | ------ | ----------- |
+| name     | string | null: false |
+| email    | string | null: false |
+| password | string | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :scrap
+- has_many :travels_users
+- has_many :travels, through: :travels_users
 
-* Configuration
+---
 
-* Database creation
+## travels テーブル
 
-* Database initialization
+| Column     | Type   | Options     |
+| ---------- | ------ | ----------- |
+| name       | string | null: false |
+| start_date | string | null: false |
+| end_date   | string | null: false |
+| image      | text   |             |
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- has_many :folder
+- has_many :travels_users
+- has_many :users, through: :travels_users
 
-* Deployment instructions
+---
 
-* ...
+## travels_users テーブル
+
+| Column    | Type    | Options                        |
+| --------- | ------- | ------------------------------ |
+| user_id   | integer | null: false, foreign_key: true |
+| travel_id | integer | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :travel
+- belongs_to :user
+
+---
+
+## folders テーブル
+
+| Column    | Type    | Options                        |
+| --------- | ------- | ------------------------------ |
+| name      | string  | null: false                    |
+| travel_id | integer | null: false, foreign_key: true |
+
+### Association
+
+- has_many :scraps
+- belong_to :travel
+
+---
+
+## scraps テーブル
+
+| Column    | Type    | Options                        |
+| --------- | ------- | ------------------------------ |
+| image     | text    | null: false                    |
+| text      | text    |                                |
+| user_id   | integer | null: false, foreign_key: true |
+| folder_id | integer | null: false, foreign_key: true |
+
+
+### Association
+
+- belong_to :folder
+- belong_to :user
+
+---
