@@ -1,0 +1,19 @@
+%h1 Listing travels
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @travels.each do |travel|
+      %tr
+        %td= link_to 'Show', travel
+        %td= link_to 'Edit', edit_travel_path(travel)
+        %td= link_to 'Destroy', travel, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Travel', new_travel_path

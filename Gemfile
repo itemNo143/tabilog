@@ -54,6 +54,8 @@ group :development do
   gem 'annotate'
 
   gem "view_source_map"
+
+  gem 'rails-erd'
 end
 
 group :test do

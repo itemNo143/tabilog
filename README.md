@@ -7,10 +7,10 @@
 | name     | string | null: false |
 | email    | string | null: false |
 | password | string | null: false |
+<br>
 
 ### Association
 
-- has_many :scrap
 - has_many :travels_users
 - has_many :travels, through: :travels_users
 
@@ -23,11 +23,12 @@
 | name       | string | null: false |
 | start_date | string | null: false |
 | end_date   | string | null: false |
-| image      | text   |             |
+| image      | string |             |
+<br>
 
 ### Association
 
-- has_many :folder
+- has_many :scrap_folders
 - has_many :travels_users
 - has_many :users, through: :travels_users
 
@@ -35,10 +36,11 @@
 
 ## travels_users テーブル
 
-| Column    | Type    | Options                        |
-| --------- | ------- | ------------------------------ |
-| user_id   | integer | null: false, foreign_key: true |
-| travel_id | integer | null: false, foreign_key: true |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| travel | references | null: false, foreign_key: true |
+<br>
 
 ### Association
 
@@ -47,12 +49,13 @@
 
 ---
 
-## folders テーブル
+## scrap_folders テーブル
 
-| Column    | Type    | Options                        |
-| --------- | ------- | ------------------------------ |
-| name      | string  | null: false                    |
-| travel_id | integer | null: false, foreign_key: true |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| name   | string     | null: false                    |
+| travel | references | null: false, foreign_key: true |
+<br>
 
 ### Association
 
@@ -63,13 +66,12 @@
 
 ## scraps テーブル
 
-| Column    | Type    | Options                        |
-| --------- | ------- | ------------------------------ |
-| image     | text    | null: false                    |
-| text      | text    |                                |
-| user_id   | integer | null: false, foreign_key: true |
-| folder_id | integer | null: false, foreign_key: true |
-
+| Column       | Type       | Options                        |
+| ------------ | ---------- | ------------------------------ |
+| image        | string     | null: false                    |
+| memo         | text       |                                |
+| scrap_folder | references | null: false, foreign_key: true |
+<br>
 
 ### Association
 
