@@ -11,8 +11,8 @@
 
 ### Association
 
-- has_many :travels_users
-- has_many :travels, through: :travels_users
+- has_many :travel_users
+- has_many :travels, through: :travel_users
 
 ---
 
@@ -29,8 +29,8 @@
 ### Association
 
 - has_many :scrap_folders
-- has_many :travels_users
-- has_many :users, through: :travels_users
+- has_many :travel_users
+- has_many :users, through: :travel_users
 
 ---
 

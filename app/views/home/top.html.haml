@@ -1,0 +1,36 @@
+.top
+  = render "shared/header"
+  %article
+    %section#app
+      .content
+        .content__text
+          %h1
+            \- TabiLog -
+          %h2
+            旅の思い出を保存しよう
+          .store
+            = link_to image_tag("store/App_Store.svg",alt: "App Store",class: "store--apple"),'#'
+            = link_to image_tag("store/Google_Play.png",alt: "Google Play",class: "store--google"),'#'
+          .sns
+            = link_to "#", class: "sns__btn" do
+              = icon('fab', 'twitter', class: "sns--icon")
+            = link_to "#", class: "sns__btn" do
+              = icon('fab', 'facebook-f',  class: "sns--icon")
+            = link_to "#", class: "sns__btn" do
+              = icon('fab', 'instagram', class: "sns--icon")
+            = link_to "#", class: "sns__btn" do
+              = icon('fab', 'get-pocket', class: "sns--icon")
+
+    %section#first
+      .content
+        %h1 アプリ紹介
+        %p
+          TabiLogは旅の思い出を記録するためのアプリです。
+          %br
+            写真や動画をファイルごとに保存することができます。
+            %br
+              さらに、地図上に写真や動画を撮影した場所を表示させることもできます。
+              %br
+                地図を見ながらスゴロク感覚で旅を楽しんでいただければ幸いです。
+  .footer
+
