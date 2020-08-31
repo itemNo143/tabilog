@@ -1,0 +1,19 @@
+%h1 Listing scrap_folders
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @scrap_folders.each do |scrap_folder|
+      %tr
+        %td= link_to 'Show', scrap_folder
+        %td= link_to 'Edit', edit_scrap_folder_path(scrap_folder)
+        %td= link_to 'Destroy', scrap_folder, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Scrap folder', new_scrap_folder_path

@@ -13,6 +13,7 @@
 
 - has_many :travel_users
 - has_many :travels, through: :travel_users
+- has_many :scraps
 
 ---
 
@@ -60,7 +61,7 @@
 ### Association
 
 - has_many :scraps
-- belong_to :travel
+- belongs_to :travel
 
 ---
 
@@ -75,7 +76,7 @@
 
 ### Association
 
-- belong_to :folder
-- belong_to :user
+- belongs_to :scrap_folder
+- belongs_to :user
 
 ---

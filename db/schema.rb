@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_26_143834) do
+ActiveRecord::Schema.define(version: 2020_08_30_143900) do
+
+  create_table "scrap_folders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "travel_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["travel_id"], name: "index_scrap_folders_on_travel_id"
+  end
+
+  create_table "scraps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "image", null: false
+    t.text "memo"
+    t.bigint "scrap_folder_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["scrap_folder_id"], name: "index_scraps_on_scrap_folder_id"
+  end
 
   create_table "travel_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "travel_id"
@@ -24,7 +41,7 @@ ActiveRecord::Schema.define(version: 2020_08_26_143834) do
   create_table "travels", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "start_date", null: false
-    t.string "end_sate", null: false
+    t.string "end_date", null: false
     t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -44,6 +61,8 @@ ActiveRecord::Schema.define(version: 2020_08_26_143834) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "scrap_folders", "travels"
+  add_foreign_key "scraps", "scrap_folders"
   add_foreign_key "travel_users", "travels"
   add_foreign_key "travel_users", "users"
 end

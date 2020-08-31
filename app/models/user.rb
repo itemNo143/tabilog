@@ -26,6 +26,7 @@ class User < ApplicationRecord
 
   has_many :travel_users, dependent: :destroy
   has_many :travels, through: :travel_users
+  has_many :scraps
 
   VALID_EMAIL_REGEX    = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-zA-Z])(?=.*?\d)[a-zA-Z\d!@#\$%\^\&*\)\(+=._-]{7,128}\z/i.freeze

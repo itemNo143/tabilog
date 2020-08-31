@@ -1,0 +1,10 @@
+= form_for @scrap do |f|
+  - if @scrap.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@scrap.errors.count, "error")} prohibited this scrap from being saved:"
+      %ul
+        - @scrap.errors.full_messages.each do |message|
+          %li= message
+
+  .actions
+    = f.submit 'Save'

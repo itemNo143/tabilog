@@ -1,0 +1,19 @@
+%h1 Listing scraps
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @scraps.each do |scrap|
+      %tr
+        %td= link_to 'Show', scrap
+        %td= link_to 'Edit', edit_scrap_path(scrap)
+        %td= link_to 'Destroy', scrap, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Scrap', new_scrap_path

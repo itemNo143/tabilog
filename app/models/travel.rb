@@ -3,7 +3,7 @@
 # Table name: travels
 #
 #  id         :bigint           not null, primary key
-#  end_sate   :string(255)      not null
+#  end_date   :string(255)      not null
 #  image      :string(255)
 #  name       :string(255)      not null
 #  start_date :string(255)      not null
