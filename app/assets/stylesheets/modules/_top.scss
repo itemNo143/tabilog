@@ -83,7 +83,6 @@ article {
 
         h2 {
           font-weight: bold;
-
         }
       }
 
@@ -93,14 +92,20 @@ article {
         align-items: center;
         justify-content: space-around;
 
-        &--apple {
-          height: 56px;
-          width: auto;
+        &__folder :hover {
+          opacity: 0.5;
         }
 
-        &--google {
-          height: 80px;
-          width: auto;
+        &__folder {
+          &--apple {
+            height: 56px;
+            width: auto;
+          }
+
+          &--google {
+            height: 80px;
+            width: auto;
+          }
         }
       }
 

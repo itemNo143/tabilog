@@ -26,8 +26,7 @@
       .profile
         %header
           プロフィール
-          = link_to edit_user_path(current_user) do
-            = icon('fas', 'pencil-alt', class: "profile--icon")
+          = icon('fas', 'pencil-alt', class: "profile--icon")
         .item
           %ul
             %li.name
@@ -37,3 +36,28 @@
               = icon('far', 'envelope', class: "email--icon")
               -#メールアドレス：
               = current_user.email
+
+  -#モーダルウィンドウ
+  %section.UserShowModal.ModalActive
+    .modal_bg
+    .modal
+      = form_for(current_user) do |f|
+        .modal__content
+          %header
+            %p
+              プロフィール編集
+            %button{type: "reset", class: "close"}
+              = icon('fas', 'times-circle', class: "close--icon")
+          .contents
+            .FormField
+              .FormField__label
+                = f.label :ユーザー名
+              .FormField__input
+                = f.text_field :name, autocomplete: "off", required: true
+            .FormField
+              .FormField__label
+                = f.label :email
+              .FormField__input
+                = f.email_field :email, autocomplete: "off", required: true
+          %footer
+            = f.submit "保存", class: 'save'

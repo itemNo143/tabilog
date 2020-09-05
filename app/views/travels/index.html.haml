@@ -22,8 +22,65 @@
             ログアウト
 
   %section.main
-    %button.create
-      = link_to new_travel_path do
-        = icon('fas', 'plus-circle', class: "create--icon")
-        %p アルバム作成
-    .album
+    %button.AlbumCreate
+      = icon('fas', 'plus-circle', class: "AlbumCreate--icon")
+      %p アルバム作成
+    .album_list
+      - current_user.travels.each do |travel|
+        = link_to travel_scrap_folders_path(travel), class: "album--link" do
+          .album
+            .album__cover
+              - if travel.image.present?
+                .album__cover--image
+                  = travel.image
+              - else
+                = image_tag("滝.jpg", alt: "背景", class: "album__cover--image")
+            .album__info
+              .album__info__title
+                = travel.name
+              .album__info__term
+                = travel.start_date
+                %br
+                  ・
+                  %br
+                  = travel.end_date
+
+
+
+  -#モーダルウィンドウ
+  %section.TravelCreateModal.ModalActive
+    .modal_bg
+    .modal
+      = form_with model: @travel, local: true do |f|
+        .modal__content
+          %header
+            %p
+              アルバム新規作成
+            %button{type: "reset", class: "close"}
+              = icon('fas', 'times-circle', class: "close--icon")
+          .contents
+            .FormField
+              .FormField__label
+                = f.label :タイトル
+              .FormField__input
+                = f.text_field :name, autocomplete: "off", required: true, maxlength: "255", placeholder: "旅行タイトル"
+            .FormField
+              .FormField__label
+                = f.label :出発日
+              .FormField__input
+                = f.date_field :start_date, required: true
+            .FormField
+              .FormField__label
+                = f.label :帰宅日
+              .FormField__input
+                = f.date_field :end_date, required: true
+            .FormField
+              .FormField__label
+                = f.label :画像
+              .FormField__PlanImage
+                = f.label :image do
+                  = f.file_field :image, style: "display: none"
+                  %p クリックまたは画像をドラッグアンドドロップ
+            %input{name: "travel[user_ids][]", type: "hidden", value: current_user.id}
+          %footer
+            = f.submit "作成", class: 'save'

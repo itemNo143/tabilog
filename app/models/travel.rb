@@ -20,4 +20,5 @@ class Travel < ApplicationRecord
     admin.validates :start_date
     admin.validates :end_date
   end
+  mount_uploader :image, ImageUploader
 end

@@ -1,0 +1,106 @@
+.ModalActive {
+  display: none;
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+
+  .modal_bg {
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    form {
+      max-height: calc(100% - 80px);
+    }
+
+    &__content {
+      background-color: #FFFFFF;
+      width: 540px;
+      max-height: 100%;
+      border-radius: 5px;
+      overflow: hidden;
+      border: 1px solid #eee;
+
+      header {
+        text-align: center;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: solid 2px #F2F2F2;
+
+        p {
+          font-size: 14pt;
+        }
+
+        button {
+          font-size: 1.2em;
+          border: none;
+          background: none;
+          cursor: pointer;
+        }
+      }
+
+      .contents {
+        max-height: calc(100% - 200px);
+        overflow-y: auto;
+
+        .FormField {
+          padding: 12px 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: solid 2px #F2F2F2;
+
+          input {
+            width: 380px;
+            padding: 4px 8px;
+            font-size: 12pt;
+            background: #F2F2F2;
+            border: none;
+            border-radius: 5px;
+          }
+
+          &__PlanImage {
+            display: flex;
+            flex-direction: column;
+            width: 380px !important;
+
+            p {
+              text-align: center;
+              font-size: 10pt !important;
+              cursor: pointer;
+              border: dashed 1px #16a5bc;
+              padding: 20px;
+              border-radius: 5px;
+            }
+          }
+        }
+      }
+
+      footer {
+        padding: 12px 20px;
+        display: flex;
+
+        .save {
+          border: solid 1px #16a5bc;
+          color: #16a5bc;
+          background: none;
+          padding: 4px 8px;
+          border-radius: 5px;
+          font-size: 12pt;
+          margin-left: auto;
+        }
+      }
+    }
+  }
+}

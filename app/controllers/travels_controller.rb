@@ -1,10 +1,12 @@
 class TravelsController < ApplicationController
-  before_action :set_travel, only: [:show, :edit, :update, :destroy]
+  before_action :set_travel, only: %i[show edit update destroy]
 
   # GET /travels
   # GET /travels.json
   def index
-    @travels = Travel.all
+    # @travels = Travel.all
+    @travel = Travel.new
+    @travel.users << current_user
   end
 
   # GET /travels/1
@@ -25,15 +27,11 @@ class TravelsController < ApplicationController
   # POST /travels.json
   def create
     @travel = Travel.new(travel_params)
-
-    respond_to do |format|
-      if @travel.save
-        format.html { redirect_to @travel, notice: 'Travel was successfully created.' }
-        format.json { render :show, status: :created, location: @travel }
-      else
-        format.html { render :new }
-        format.json { render json: @travel.errors, status: :unprocessable_entity }
-      end
+    if @travel.save
+      redirect_to travels_path, notice: 'アルバムを作成しました'
+    else
+      @travel.build
+      render :index
     end
   end
 
@@ -62,13 +60,14 @@ class TravelsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_travel
-      @travel = Travel.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def travel_params
-      params.fetch(:travel, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_travel
+    @travel = Travel.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def travel_params
+    params.require(:travel).permit(:name, :start_date, :end_date, :image, user_ids: [])
+  end
 end

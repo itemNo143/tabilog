@@ -34,6 +34,6 @@ class User < ApplicationRecord
   with_options presence: true do |admin|
     admin.validates :name
     admin.validates :email, uniqueness: { case_sensitive: true }, format: { with: VALID_EMAIL_REGEX, message: 'のフォーマットが不適切です' }
-    admin.validates :password, length: { in: 7..128 }, format: { with: VALID_PASSWORD_REGEX, message: 'は英字と数字両方を含むパスワードを設定してください' }
+    admin.validates :password, on: :create, length: { in: 7..128 }, format: { with: VALID_PASSWORD_REGEX, message: 'は英字と数字両方を含むパスワードを設定してください' }
   end
 end

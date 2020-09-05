@@ -1,6 +1,7 @@
 .wrapper {
   display: flex;
   background-color: #F2F2F2;
+  position: relative;
 
   .SideBar {
     width: 240px;
@@ -65,12 +66,12 @@
   .main {
     width: calc(100% - 240px);
     padding: 40px;
-    //TODO topページもやる↓
+
     button :hover {
       opacity: 0.8;
     }
 
-    .create {
+    .AlbumCreate {
       position: fixed;
       bottom: 40px;
       right: 0;
@@ -79,14 +80,19 @@
       padding: 8px;
       border-radius: 20px 0 0 20px;
       box-shadow: 0 0 8px #d8d8d8;
+      display: flex;
+      align-items: center;
+      font-size: 12pt;
+      color: #16a5bc;
+      outline: none;
 
-      a {
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        font-size: 12pt;
-        color: #16a5bc;
-      }
+      //a {
+      //  text-decoration: none;
+      //  display: flex;
+      //  align-items: center;
+      //  font-size: 12pt;
+      //  color: #16a5bc;
+      //}
 
       &--icon {
         font-size: 1.5em;
@@ -97,11 +103,60 @@
       }
     }
 
-    .album {
+    .album_list {
       display: flex;
       justify-content: space-between;
+      flex-wrap: wrap;
       padding: 40px;
       margin-bottom: 80px;
+
+      a:nth-child(2n+1) {
+        margin-right: 20px;
+      }
+
+      a {
+        width: calc(50% - 20px);
+        margin-bottom: 40px;
+        display: block;
+        text-decoration: none;
+        color: #17181A;
+
+        .album {
+          border-radius: 5px;
+          background: #FFFFFF;
+          overflow: hidden;
+
+          &__cover {
+            width: 100%;
+            height: 160px;
+            position: relative;
+
+            &--image {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+
+          &__info {
+            text-align: center;
+            padding: 12px 20px;
+
+            &__title {
+              font-weight: bold;
+              font-size: 16pt;
+              text-overflow: ellipsis; /* オーバーしたテキストを３点リーダーにする */
+              white-space: nowrap; /* 改行を半角スペースに変換することで、1行にする */
+              overflow: hidden; /* オーバーした要素を非表示にする*/
+              margin-bottom: 12px;
+            }
+
+            &__term {
+              font-size: 10pt;
+            }
+          }
+        }
+      }
     }
   }
 }

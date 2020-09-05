@@ -9,8 +9,10 @@
           %h2
             旅の思い出を保存しよう
           .store
-            = link_to image_tag("store/App_Store.svg",alt: "App Store",class: "store--apple"),'#'
-            = link_to image_tag("store/Google_Play.png",alt: "Google Play",class: "store--google"),'#'
+            .store__folder
+              = link_to image_tag("store/App_Store.svg",alt: "App Store",class: "store__folder--apple"),'#'
+            .store__folder
+              = link_to image_tag("store/Google_Play.png",alt: "Google Play",class: "store__folder--google"),'#'
           .sns
             = link_to "#", class: "sns__btn" do
               = icon('fab', 'twitter', class: "sns--icon")
