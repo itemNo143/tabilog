@@ -21,4 +21,5 @@ class ScrapFolder < ApplicationRecord
   belongs_to :travel
 
   validates :name, presence: true
+
 end

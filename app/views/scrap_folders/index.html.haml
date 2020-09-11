@@ -1,19 +1,57 @@
-%h1 Listing scrap_folders
+.wrapper
+  %section.SideBar
+    .logo
+      = link_to 'TabiLog', travels_path
+    .MenuList
+      = link_to "#" do
+        .detail
+          - if @travel.image.present?
+            = image_tag @travel.image.url, class: 'detail--image'
+          - else
+            = image_tag("滝.jpg", alt: "背景", class: "detail--image")
+          .detail__list
+            %p.title
+              = @travel.name
+            %p.term
+              = @travel.start_date
+              %br
+                ・
+                %br
+                = @travel.end_date
+      %ul
+        %li.selected
+          = link_to travel_scrap_folders_path(@travel), class: 'selected__btn' do
+            = icon('fas', 'camera-retro', class: "MenuList--icon")
+            スクラップ
+        %li
+          = link_to "#" do
+            = icon('far', 'sticky-note', class: "MenuList--icon")
+            メモ
 
-%table
-  %thead
-    %tr
-      %th
-      %th
-      %th
+  %section.main
+    %button.AlbumCreate
+      = icon('fas', 'plus-circle', class: "AlbumCreate--icon")
+      %p フォルダー作成
+    .folder_list
+      = render @scrap_folders
 
-  %tbody
-    - @scrap_folders.each do |scrap_folder|
-      %tr
-        %td= link_to 'Show', scrap_folder
-        %td= link_to 'Edit', edit_scrap_folder_path(scrap_folder)
-        %td= link_to 'Destroy', scrap_folder, method: :delete, data: { confirm: 'Are you sure?' }
 
-%br
-
-= link_to 'New Scrap folder', new_scrap_folder_path
+  -#モーダルウィンドウ
+  %section.TravelCreateModal.ModalActive
+    .modal_bg
+    .modal
+      = form_with model: [@travel, @scrap_folder], local: true do |f|
+        .modal__content
+          %header
+            %p
+              フォルダー作成
+            %button{type: "reset", class: "close"}
+              = icon('fas', 'times-circle', class: "close--icon")
+          .contents
+            .FormField
+              .FormField__label
+                = f.label :フォルダー名
+              .FormField__input
+                = f.text_field :name, autofocus: true, autocomplete: "off", required: true, maxlength: "255"
+          %footer
+            = f.submit "作成", class: 'save'

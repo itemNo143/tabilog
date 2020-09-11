@@ -31,8 +31,7 @@
           .album
             .album__cover
               - if travel.image.present?
-                .album__cover--image
-                  = travel.image
+                = image_tag travel.image.url, class: 'album__cover--image'
               - else
                 = image_tag("滝.jpg", alt: "背景", class: "album__cover--image")
             .album__info
@@ -44,7 +43,6 @@
                   ・
                   %br
                   = travel.end_date
-
 
 
   -#モーダルウィンドウ

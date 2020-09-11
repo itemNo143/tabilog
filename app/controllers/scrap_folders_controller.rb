@@ -1,44 +1,28 @@
 class ScrapFoldersController < ApplicationController
-  before_action :set_scrap_folder, only: [:show, :edit, :update, :destroy]
+  before_action :set_scrap_folder, only: %i[show edit update destroy]
+  before_action :set_travel
 
-  # GET /scrap_folders
-  # GET /scrap_folders.json
   def index
-    @scrap_folders = ScrapFolder.all
+    @scrap_folder = ScrapFolder.new
+    @scrap_folders = @travel.scrap_folders.includes(:scraps)
   end
 
-  # GET /scrap_folders/1
-  # GET /scrap_folders/1.json
-  def show
-  end
-
-  # GET /scrap_folders/new
   def new
     @scrap_folder = ScrapFolder.new
   end
 
-  # GET /scrap_folders/1/edit
   def edit
   end
 
-  # POST /scrap_folders
-  # POST /scrap_folders.json
   def create
-    @scrap_folder = ScrapFolder.new(scrap_folder_params)
-
-    respond_to do |format|
-      if @scrap_folder.save
-        format.html { redirect_to @scrap_folder, notice: 'Scrap folder was successfully created.' }
-        format.json { render :show, status: :created, location: @scrap_folder }
-      else
-        format.html { render :new }
-        format.json { render json: @scrap_folder.errors, status: :unprocessable_entity }
-      end
+    @scrap_folder = @travel.scrap_folders.new(scrap_folder_params)
+    if @scrap_folder.save
+      redirect_to travel_scrap_folders_path(@travel), notice: 'フォルダーを作成しました'
+    else
+      render :index
     end
   end
 
-  # PATCH/PUT /scrap_folders/1
-  # PATCH/PUT /scrap_folders/1.json
   def update
     respond_to do |format|
       if @scrap_folder.update(scrap_folder_params)
@@ -51,8 +35,6 @@ class ScrapFoldersController < ApplicationController
     end
   end
 
-  # DELETE /scrap_folders/1
-  # DELETE /scrap_folders/1.json
   def destroy
     @scrap_folder.destroy
     respond_to do |format|
@@ -62,13 +44,16 @@ class ScrapFoldersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_scrap_folder
-      @scrap_folder = ScrapFolder.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def scrap_folder_params
-      params.fetch(:scrap_folder, {})
-    end
+  def set_scrap_folder
+    @scrap_folder = ScrapFolder.find(params[:id])
+  end
+
+  def set_travel
+    @travel = Travel.find(params[:travel_id])
+  end
+
+  def scrap_folder_params
+    params.require(:scrap_folder).permit(:name).merge(travel_id: params[:travel_id])
+  end
 end
