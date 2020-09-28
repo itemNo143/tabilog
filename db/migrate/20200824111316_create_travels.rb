@@ -5,6 +5,7 @@ class CreateTravels < ActiveRecord::Migration[6.0]
       t.string :start_date,  null: false
       t.string :end_date,    null: false
       t.string :image
+      t.text :memo
       t.timestamps
     end
   end

@@ -1,17 +1,10 @@
 class ScrapFoldersController < ApplicationController
-  before_action :set_scrap_folder, only: %i[show edit update destroy]
-  before_action :set_travel
+  before_action :set_scrap_folder, only: %i[update destroy]
+  before_action :set_travel, only: %i[index create]
 
   def index
-    @scrap_folder = ScrapFolder.new
+    @scrap_folder  = ScrapFolder.new
     @scrap_folders = @travel.scrap_folders.includes(:scraps)
-  end
-
-  def new
-    @scrap_folder = ScrapFolder.new
-  end
-
-  def edit
   end
 
   def create
@@ -24,22 +17,19 @@ class ScrapFoldersController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @scrap_folder.update(scrap_folder_params)
-        format.html { redirect_to @scrap_folder, notice: 'Scrap folder was successfully updated.' }
-        format.json { render :show, status: :ok, location: @scrap_folder }
-      else
-        format.html { render :edit }
-        format.json { render json: @scrap_folder.errors, status: :unprocessable_entity }
-      end
+    if @scrap_folder.update(scrap_folder_params)
+      redirect_to scrap_folder_scraps_path(@scrap_folder), notice: 'フォルダーを更新しました'
+    else
+      redirect_to scrap_folder_scraps_path(@scrap_folder), notice: 'フォルダーの更新に失敗しました'
     end
   end
 
   def destroy
-    @scrap_folder.destroy
-    respond_to do |format|
-      format.html { redirect_to scrap_folders_url, notice: 'Scrap folder was successfully destroyed.' }
-      format.json { head :no_content }
+    @travel = current_user.travel_ids
+    if @scrap_folder.destroy
+      redirect_to travel_scrap_folders_path(@travel), notice: '削除しました'
+    else
+      redirect_to travel_scrap_folders_path(@travel), alert: '削除できませんでした'
     end
   end
 
@@ -54,6 +44,6 @@ class ScrapFoldersController < ApplicationController
   end
 
   def scrap_folder_params
-    params.require(:scrap_folder).permit(:name).merge(travel_id: params[:travel_id])
+    params.require(:scrap_folder).permit(:name)
   end
 end

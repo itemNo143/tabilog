@@ -1,0 +1,28 @@
+%section.SideBar
+  .logo
+    = link_to 'TabiLog', travels_path
+  .MenuList
+    = link_to travel_path(@travel) do
+      .detail
+        - if @travel.image.present?
+          = image_tag @travel.image.url, class: 'detail--image'
+        - else
+          = image_tag("滝.jpg", alt: "背景", class: "detail--image")
+        .detail__list
+          %p.title
+            = @travel.name
+          %p.term
+            = @travel.start_date
+            %br
+              ・
+              %br
+              = @travel.end_date
+    %ul
+      %li.selected
+        = link_to travel_scrap_folders_path(@travel), class: 'selected__btn' do
+          = icon('fas', 'camera-retro', class: "MenuList--icon")
+          スクラップ
+      %li
+        = link_to "#" do
+          = icon('far', 'sticky-note', class: "MenuList--icon")
+          メモ

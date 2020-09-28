@@ -1,7 +1,5 @@
 .wrapper {
   display: flex;
-  background-color: #F2F2F2;
-  position: relative;
 
   .SideBar {
     width: 240px;
@@ -111,7 +109,7 @@
   }
 
   .main {
-    width: calc(100% - 240px);
+    width: calc(100vw - 240px);
     padding: 40px;
 
     button :hover {
@@ -127,19 +125,12 @@
       padding: 8px;
       border-radius: 20px 0 0 20px;
       box-shadow: 0 0 8px #d8d8d8;
+      z-index: 10;
       display: flex;
       align-items: center;
       font-size: 12pt;
       color: #16a5bc;
       outline: none;
-
-      //a {
-      //  text-decoration: none;
-      //  display: flex;
-      //  align-items: center;
-      //  font-size: 12pt;
-      //  color: #16a5bc;
-      //}
 
       &--icon {
         font-size: 1.5em;

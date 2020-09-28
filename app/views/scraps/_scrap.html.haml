@@ -1,0 +1,3 @@
+.ScrapImage{data: {scrap: {id: scrap.id}}}
+  = link_to scrap.image.url, 'data-lightbox': "group", 'created_at': scrap.created_at do
+    = image_tag scrap.image.url

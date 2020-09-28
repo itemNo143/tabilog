@@ -22,7 +22,7 @@
             ログアウト
 
   %section.main
-    %button.AlbumCreate
+    %button.AlbumCreate.ModalTrigger
       = icon('fas', 'plus-circle', class: "AlbumCreate--icon")
       %p アルバム作成
     .album_list
@@ -46,7 +46,7 @@
 
 
   -#モーダルウィンドウ
-  %section.TravelCreateModal.ModalActive
+  %section.ModalWindow.ModalActive
     .modal_bg
     .modal
       = form_with model: @travel, local: true do |f|
@@ -81,4 +81,6 @@
                   %p クリックまたは画像をドラッグアンドドロップ
             %input{name: "travel[user_ids][]", type: "hidden", value: current_user.id}
           %footer
-            = f.submit "作成", class: 'save'
+            .save
+              = f.submit "保存", class: 'save_button'
+-# TODO 画像選択したらその選択した画像が表示されるようにする。

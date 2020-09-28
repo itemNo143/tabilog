@@ -1,35 +1,8 @@
 .wrapper
-  %section.SideBar
-    .logo
-      = link_to 'TabiLog', travels_path
-    .MenuList
-      = link_to "#" do
-        .detail
-          - if @travel.image.present?
-            = image_tag @travel.image.url, class: 'detail--image'
-          - else
-            = image_tag("滝.jpg", alt: "背景", class: "detail--image")
-          .detail__list
-            %p.title
-              = @travel.name
-            %p.term
-              = @travel.start_date
-              %br
-                ・
-                %br
-                = @travel.end_date
-      %ul
-        %li.selected
-          = link_to travel_scrap_folders_path(@travel), class: 'selected__btn' do
-            = icon('fas', 'camera-retro', class: "MenuList--icon")
-            スクラップ
-        %li
-          = link_to "#" do
-            = icon('far', 'sticky-note', class: "MenuList--icon")
-            メモ
+  = render 'side-bar'
 
   %section.main
-    %button.AlbumCreate
+    %button.AlbumCreate.ModalTrigger
       = icon('fas', 'plus-circle', class: "AlbumCreate--icon")
       %p フォルダー作成
     .folder_list
@@ -37,7 +10,7 @@
 
 
   -#モーダルウィンドウ
-  %section.TravelCreateModal.ModalActive
+  %section.ModalWindow.ModalActive
     .modal_bg
     .modal
       = form_with model: [@travel, @scrap_folder], local: true do |f|
@@ -54,4 +27,5 @@
               .FormField__input
                 = f.text_field :name, autofocus: true, autocomplete: "off", required: true, maxlength: "255"
           %footer
-            = f.submit "作成", class: 'save'
+            .save
+              = f.submit "保存", class: 'save_button'

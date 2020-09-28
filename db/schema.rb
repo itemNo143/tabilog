@@ -24,9 +24,11 @@ ActiveRecord::Schema.define(version: 2020_08_30_143900) do
     t.string "image", null: false
     t.text "memo"
     t.bigint "scrap_folder_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["scrap_folder_id"], name: "index_scraps_on_scrap_folder_id"
+    t.index ["user_id"], name: "index_scraps_on_user_id"
   end
 
   create_table "travel_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -43,6 +45,7 @@ ActiveRecord::Schema.define(version: 2020_08_30_143900) do
     t.string "start_date", null: false
     t.string "end_date", null: false
     t.string "image"
+    t.text "memo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -63,6 +66,7 @@ ActiveRecord::Schema.define(version: 2020_08_30_143900) do
 
   add_foreign_key "scrap_folders", "travels"
   add_foreign_key "scraps", "scrap_folders"
+  add_foreign_key "scraps", "users"
   add_foreign_key "travel_users", "travels"
   add_foreign_key "travel_users", "users"
 end

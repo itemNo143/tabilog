@@ -5,6 +5,7 @@
 #  id         :bigint           not null, primary key
 #  end_date   :string(255)      not null
 #  image      :string(255)
+#  memo       :text(65535)
 #  name       :string(255)      not null
 #  start_date :string(255)      not null
 #  created_at :datetime         not null
@@ -20,5 +21,6 @@ class Travel < ApplicationRecord
     admin.validates :start_date
     admin.validates :end_date
   end
+
   mount_uploader :image, ImageUploader
 end

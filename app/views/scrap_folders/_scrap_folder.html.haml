@@ -2,7 +2,10 @@
   .scrap_folder
     - if scrap_folder.scraps.present?
       .thumbnail
-        = scrap_folder.scraps.first.image
+        = image_tag scrap_folder.scraps.first.image.url
+        = image_tag scrap_folder.scraps.second.image.url  if scrap_folder.scraps.second.present?
+        = image_tag scrap_folder.scraps.third.image.url   if scrap_folder.scraps.third.present?
+        = image_tag scrap_folder.scraps.fourth.image.url  if scrap_folder.scraps.fourth.present?
     - else
       .thumbnail.empty
         = icon('far', 'image', class: "empty--icon")

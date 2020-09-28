@@ -1,4 +1,4 @@
-.ModalActive {
+.ModalWindow {
   display: none;
   position: fixed;
   height: 100vh;
@@ -19,14 +19,10 @@
     left: 50%;
     transform: translate(-50%, -50%);
 
-    form {
-      max-height: calc(100% - 80px);
-    }
-
     &__content {
       background-color: #FFFFFF;
       width: 540px;
-      max-height: 100%;
+      max-height: calc(100% - 80px);
       border-radius: 5px;
       overflow: hidden;
       border: 1px solid #eee;
@@ -87,20 +83,67 @@
         }
       }
 
+      .update_button {
+        justify-content: space-between;
+      }
+
       footer {
         padding: 12px 20px;
         display: flex;
 
+        .save :hover {
+          background-color: rgba(135, 206, 250, 0.25);
+        }
+
         .save {
+          margin-left: auto;
+        }
+
+
+        .delete_button {
+          border: 1px solid #fb3d22;
+          color: #fb3d22;
+          padding: 4px 8px;
+          border-radius: 5px;
+          font-size: 12pt;
+          background: none;
+        }
+
+        .save_button {
+          display: block;
           border: solid 1px #16a5bc;
           color: #16a5bc;
           background: none;
           padding: 4px 8px;
           border-radius: 5px;
           font-size: 12pt;
-          margin-left: auto;
         }
       }
     }
+  }
+}
+
+.ModalActiveAttention {
+  .contents {
+    text-align: center;
+    padding: 20px 5px;
+
+    p {
+      margin-bottom: 20px;
+    }
+
+    .delete {
+      padding: 4px 8px;
+      border-radius: 5px;
+      font-size: 12pt;
+      background: none;
+      border: 1px solid #fb3d22;
+      color: #fb3d22;
+
+      i {
+        margin-right: 4px;
+      }
+    }
+
   }
 }

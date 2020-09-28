@@ -21,6 +21,14 @@
         display: flex;
         flex-wrap: wrap;
         height: 160px;
+
+        img {
+          width: 80px;
+          height: 80px;
+          object-fit: cover;
+          box-sizing: border-box;
+          border: solid 1px #fff;
+        }
       }
 
       .empty {
@@ -41,15 +49,18 @@
       .info {
         text-align: center;
         padding: 12px;
-        .title{
+
+        .title {
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
         }
-        .data{
+
+        .data {
           margin-top: 8px;
           color: #bbbec5;
-          &--icon{
+
+          &--icon {
             font-size: 1.2em;
             margin: 0 4px;
           }

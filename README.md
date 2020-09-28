@@ -25,6 +25,7 @@
 | start_date | string | null: false |
 | end_date   | string | null: false |
 | image      | string |             |
+| memo       | text   |             |
 <br>
 
 ### Association
@@ -72,6 +73,7 @@
 | image        | string     | null: false                    |
 | memo         | text       |                                |
 | scrap_folder | references | null: false, foreign_key: true |
+| user         | references | null: false, foreign_key: true |
 <br>
 
 ### Association

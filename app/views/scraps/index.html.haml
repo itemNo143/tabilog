@@ -1,0 +1,68 @@
+.wrapper
+  = render 'scrap_folders/side-bar'
+
+  %section.ScrapMain
+    = form_with model: [@scrap_folder, @scrap], id: "ScrapForm", local: true do |f|
+      = f.label :image, class: 'AddImage' do
+        = f.file_field :image, class: "AddImage__file"
+        = icon('fas', 'plus-circle', class: "AddImage--icon")
+        %p 画像を追加
+
+    .UploadGuide
+    %header.ScrapHeader
+      = link_to :back do
+        %i.fas.fa-chevron-left
+      %p=@scrap_folder.name
+      %i.fas.fa-wrench.ModalTrigger
+    .scrap
+      = render @scraps
+
+
+  -#モーダルウィンドウ
+  %section.ModalWindow.ModalActive
+    .modal_bg
+    .modal
+      = form_with model: @scrap_folder, local: true do |f|
+        .modal__content
+          %header
+            %p
+              フォルダー作成
+            %button{type: "reset", class: "close"}
+              = icon('fas', 'times-circle', class: "close--icon")
+          .contents
+            .FormField
+              .FormField__label
+                = f.label :フォルダー名
+              .FormField__input
+                = f.text_field :name, autofocus: true, autocomplete: "off", required: true, maxlength: "255"
+          %footer.update_button
+            %button{type: "reset", class:'delete_button'}
+              %i.fas.fa-trash
+              削除
+            = f.submit "保存", class: 'save_button'
+
+  -#モーダルウィンドウ
+  %section.ModalWindow.ModalActiveAttention
+    .modal_bg
+    .modal
+      .modal__content
+        %header
+          %p
+            フォルダー削除
+          %button{type: "reset", class: "close"}
+            = icon('fas', 'times-circle', class: "close--icon")
+        .contents
+          %p フォルダーを削除するとフォルダーに含まれる画像が全て削除されます。よろしいですか？
+          = button_to  scrap_folder_path(@scrap_folder), method: :delete, class: "delete" do
+            %i.fas.fa-trash
+            削除
+
+
+:javascript
+  $('input[type=file]').on('change', function (e) {
+                console.log(e.target.files);
+                if (e.target.files[0].size > 0) {
+                    $(this).parents('form').submit();
+                }
+            });
+

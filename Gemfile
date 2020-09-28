@@ -80,10 +80,19 @@ gem 'devise'
 
 gem 'pry-rails'
 
-gem 'rubocop', require:false
-gem 'rubocop-rails', require:false
+gem 'rubocop', require: false
+gem 'rubocop-rails', require: false
 
+# JSでcontrollerの変数を使えるようにするgem
+gem 'gon'
 
+gem 'dropzonejs-rails'
 
+# GoogleMapを簡単に作成できるgem
+gem "gmaps4rails"
+# 地名から緯度経度に変換できるgem
+gem "geocoder"
+# GoogleMapAPIのkeyを隠すためのgem
+gem "dotenv-rails"
 
 

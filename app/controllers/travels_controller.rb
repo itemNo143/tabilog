@@ -1,12 +1,16 @@
 class TravelsController < ApplicationController
-  before_action :set_travel, only: %i[edit update destroy]
+  before_action :set_travel, only: %i[show update destroy]
 
   def index
-    @travel = Travel.new
-    @travel.users << current_user
+    if user_signed_in?
+      @travel = Travel.new
+      @travel.users << current_user
+    else
+      redirect_to new_user_session_path
+    end
   end
 
-  def edit
+  def show
   end
 
   def create
@@ -19,22 +23,18 @@ class TravelsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @travel.update(travel_params)
-        format.html { redirect_to @travel, notice: 'Travel was successfully updated.' }
-        format.json { render :show, status: :ok, location: @travel }
-      else
-        format.html { render :edit }
-        format.json { render json: @travel.errors, status: :unprocessable_entity }
-      end
+    if @travel.update(travel_params)
+      redirect_to @travel, notice: 'アルバムを更新しました'
+    else
+      redirect_to @travel, notice: 'アルバムの更新に失敗しました'
     end
   end
 
   def destroy
-    @travel.destroy
-    respond_to do |format|
-      format.html { redirect_to travels_url, notice: 'Travel was successfully destroyed.' }
-      format.json { head :no_content }
+    if @travel.destroy
+      redirect_to action: 'index', notice: '削除しました'
+    else
+      redirect_to action: 'index', alert: '削除できませんでした'
     end
   end
 
@@ -45,7 +45,7 @@ class TravelsController < ApplicationController
   end
 
   def travel_params
-    params.require(:travel).permit(:name, :start_date, :end_date, :image, user_ids: [])
+    params.require(:travel).permit(:name, :start_date, :end_date, :image, :memo, user_ids: [])
   end
 
 end
