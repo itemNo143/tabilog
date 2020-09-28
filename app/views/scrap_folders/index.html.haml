@@ -1,0 +1,31 @@
+.wrapper
+  = render 'side-bar'
+
+  %section.main
+    %button.AlbumCreate.ModalTrigger
+      = icon('fas', 'plus-circle', class: "AlbumCreate--icon")
+      %p フォルダー作成
+    .folder_list
+      = render @scrap_folders
+
+
+  -#モーダルウィンドウ
+  %section.ModalWindow.ModalActive
+    .modal_bg
+    .modal
+      = form_with model: [@travel, @scrap_folder], local: true do |f|
+        .modal__content
+          %header
+            %p
+              フォルダー作成
+            %button{type: "reset", class: "close"}
+              = icon('fas', 'times-circle', class: "close--icon")
+          .contents
+            .FormField
+              .FormField__label
+                = f.label :フォルダー名
+              .FormField__input
+                = f.text_field :name, autofocus: true, autocomplete: "off", required: true, maxlength: "255"
+          %footer
+            .save
+              = f.submit "保存", class: 'save_button'

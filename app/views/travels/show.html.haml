@@ -1,0 +1,97 @@
+.wrapper
+  %section.SideBar
+    .logo
+      = link_to 'TabiLog', travels_path
+    .MenuList
+      = link_to travel_path(@travel) do
+        .detail
+          - if @travel.image.present?
+            = image_tag @travel.image.url, class: 'detail--image'
+          - else
+            = image_tag("滝.jpg", alt: "背景", class: "detail--image")
+          .detail__list
+            %p.title
+              = @travel.name
+            %p.term
+              = @travel.start_date
+              %br
+                ・
+                %br
+                = @travel.end_date
+      %ul
+        %li
+          = link_to travel_scrap_folders_path(@travel) do
+            = icon('fas', 'camera-retro', class: "MenuList--icon")
+            スクラップ
+        %li
+          = link_to "#" do
+            = icon('far', 'sticky-note', class: "MenuList--icon")
+            メモ
+
+  %section.main
+    .TravelShowColumn
+      .content
+        %header
+          %p アルバム情報
+          = icon('fas', 'pencil-alt', class: "pencil_icon")
+        .AlbumImage
+          - if @travel.image.present?
+            = image_tag @travel.image.url
+          - else
+            = image_tag("滝.jpg", alt: "背景")
+        .item
+          %p タイトル
+          %p= @travel.name
+        .item
+          %p 期間
+          %p
+            = @travel.start_date
+            \&nbsp;〜&nbsp;
+            = @travel.end_date
+        .item
+          %p メンバー
+          %p.member
+            - @travel.users.each do |user|
+              = user.name
+        %footer
+          = button_to "アルバムを削除", travel_path(@travel), method: :delete, data: { confirm: "削除してもよろしいですか？" }, class: "delete"
+
+
+  -#モーダルウィンドウ
+  %section.ModalWindow.ModalActive
+    .modal_bg
+    .modal
+      .modal__content
+        %header
+          %p
+            アルバム情報編集
+          %button{type: "reset", class: "close"}
+            = icon('fas', 'times-circle', class: "close--icon")
+        = form_with model: @travel, local: true do |f|
+          .contents
+            .FormField
+              .FormField__label
+                = f.label :タイトル
+              .FormField__input
+                = f.text_field :name, autocomplete: "off", required: true, maxlength: "255", placeholder: "旅行タイトル"
+            .FormField
+              .FormField__label
+                = f.label :出発日
+              .FormField__input
+                = f.text_field :start_date, required: true
+            .FormField
+              .FormField__label
+                = f.label :帰宅日
+              .FormField__input
+                = f.text_field :end_date, required: true
+            .FormField
+              .FormField__label
+                = f.label :画像
+              .FormField__PlanImage
+                = f.label :image do
+                  = f.file_field :image, style: "display: none"
+                  %p クリックまたは画像をドラッグアンドドロップ
+            %input{name: "travel[user_ids][]", type: "hidden", value: current_user.id}
+          %footer
+            .save
+              = f.submit "保存", class: 'save_button'

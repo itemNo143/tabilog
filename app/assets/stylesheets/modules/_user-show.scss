@@ -1,0 +1,45 @@
+.column {
+  max-width: 400px;
+  margin: auto auto 80px;
+
+  .profile {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    overflow: hidden;
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: solid 2px #F2F2F2;
+      font-size: 16pt;
+      padding: 20px;
+
+      i {
+        color: darkgray;
+        cursor: pointer;
+      }
+    }
+
+    .item {
+      padding: 12px 20px;
+
+      ul {
+        list-style: none;
+
+        li {
+          margin-bottom: 10px;
+          display: flex;
+          align-items: center;
+
+          i {
+            color: deepskyblue;
+            font-size: 1.3em;
+            margin-right: 25px;
+            margin-left: 6px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+.folder_list {
+  display: flex;
+  padding: 40px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: 80px;
+
+  a {
+    margin-bottom: 40px;
+    display: block;
+    text-decoration: none;
+    color: #17181A;
+
+    .scrap_folder {
+      background: #fff;
+      border-radius: 5px;
+      overflow: hidden;
+      width: 160px;
+
+      .thumbnail {
+        display: flex;
+        flex-wrap: wrap;
+        height: 160px;
+
+        img {
+          width: 80px;
+          height: 80px;
+          object-fit: cover;
+          box-sizing: border-box;
+          border: solid 1px #fff;
+        }
+      }
+
+      .empty {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: #9b9b9b;
+
+        &--icon {
+          font-size: 3em;
+        }
+
+        p {
+          font-size: 12px;
+        }
+      }
+
+      .info {
+        text-align: center;
+        padding: 12px;
+
+        .title {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+
+        .data {
+          margin-top: 8px;
+          color: #bbbec5;
+
+          &--icon {
+            font-size: 1.2em;
+            margin: 0 4px;
+          }
+        }
+      }
+    }
+  }
+}

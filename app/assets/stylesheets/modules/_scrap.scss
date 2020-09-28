@@ -1,0 +1,79 @@
+.ScrapMain {
+  width: calc(100vw - 240px);
+  padding: 0;
+
+  .ScrapForm :hover {
+    opacity: 0.8;
+  }
+
+  .AddImage {
+    position: fixed;
+    bottom: 40px;
+    right: 0;
+    background-color: #FFFFFF;
+    border: none;
+    padding: 8px;
+    border-radius: 20px 0 0 20px;
+    box-shadow: 0 0 8px #d8d8d8;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    font-size: 12pt;
+    color: #16a5bc;
+    outline: none;
+
+    &--icon {
+      font-size: 1.5em;
+    }
+
+    p {
+      margin: 0 15px 0 5px;
+    }
+
+    &__file {
+      display: none;
+    }
+  }
+
+  .ScrapHeader {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    padding: 12px;
+
+    i {
+      font-size: 1.5em;
+      color: black;
+    }
+
+    p {
+      font-size: 16pt;
+    }
+  }
+
+  .scrap {
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: flex-start;
+    overflow: auto;
+
+    .ScrapImage {
+      width: 160px;
+      height: 160px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        cursor: pointer;
+        border: solid 1px #fff;
+        box-sizing: border-box;
+      }
+    }
+  }
+}
+

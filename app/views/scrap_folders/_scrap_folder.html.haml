@@ -1,0 +1,18 @@
+= link_to scrap_folder_scraps_path(scrap_folder) do
+  .scrap_folder
+    - if scrap_folder.scraps.present?
+      .thumbnail
+        = image_tag scrap_folder.scraps.first.image.url
+        = image_tag scrap_folder.scraps.second.image.url  if scrap_folder.scraps.second.present?
+        = image_tag scrap_folder.scraps.third.image.url   if scrap_folder.scraps.third.present?
+        = image_tag scrap_folder.scraps.fourth.image.url  if scrap_folder.scraps.fourth.present?
+    - else
+      .thumbnail.empty
+        = icon('far', 'image', class: "empty--icon")
+        %p 画像がありません
+    .info
+      .title
+        = scrap_folder.name
+      .data
+        = icon('fas', 'image', class: "data--icon")
+        = icon('fas', 'film', class: "data--icon")

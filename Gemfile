@@ -31,6 +31,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails', '~> 4.0.0.beta2'
+  gem 'rails-controller-testing'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -40,6 +43,19 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # エラー画面をわかりやすく整形してくれる
+  gem 'better_errors'
+  # better_errorsの画面上にirb/pry(PERL)を表示する
+  gem 'binding_of_caller'
+
+  gem 'bullet'
+
+  gem 'annotate'
+
+  gem "view_source_map"
+
+  gem 'rails-erd'
 end
 
 group :test do
@@ -52,3 +68,31 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem "haml-rails", ">= 1.0", '<= 2.0.1'
+gem 'font-awesome-sass'
+gem 'jquery-rails'
+
+gem 'carrierwave'
+gem 'mini_magick'
+
+gem 'devise'
+
+gem 'pry-rails'
+
+gem 'rubocop', require: false
+gem 'rubocop-rails', require: false
+
+# JSでcontrollerの変数を使えるようにするgem
+gem 'gon'
+
+gem 'dropzonejs-rails'
+
+# GoogleMapを簡単に作成できるgem
+gem "gmaps4rails"
+# 地名から緯度経度に変換できるgem
+gem "geocoder"
+# GoogleMapAPIのkeyを隠すためのgem
+gem "dotenv-rails"
+
+
