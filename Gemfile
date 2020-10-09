@@ -94,5 +94,5 @@ gem "gmaps4rails"
 gem "geocoder"
 # GoogleMapAPIのkeyを隠すためのgem
 gem "dotenv-rails"
-
-
+# exifを取得するgem
+gem 'exifr'
