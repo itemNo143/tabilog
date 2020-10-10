@@ -1,0 +1,29 @@
+.address {
+  margin-bottom: 10px;
+
+  &__search{
+    font-size: 12pt;
+    padding: 2px 8px;
+    border: solid 1px grey;
+    border-radius: 5px;
+  }
+
+  .map_display_button {
+    border: solid 1px #16a5bc;
+    color: #16a5bc;
+    background: white;
+    padding: 2px 4px;
+    border-radius: 5px;
+    font-size: 12pt;
+  }
+}
+
+#map {
+  height: 90%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

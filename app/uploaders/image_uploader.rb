@@ -7,7 +7,6 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def get_exif_info
     require 'exifr/jpeg'
-    @exif = EXIFR::JPEG::new(self.file.file)
   end
 
   # Choose what kind of storage to use for this uploader:

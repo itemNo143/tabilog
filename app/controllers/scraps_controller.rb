@@ -10,8 +10,12 @@ class ScrapsController < ApplicationController
 
   def create
     @scrap = @scrap_folder.scraps.new(scrap_params)
-    @scrap.latitude = EXIFR::JPEG::new(@scrap.image.file.file).gps.latitude
-    @scrap.longitude = EXIFR::JPEG::new(@scrap.image.file.file).gps.longitude
+    if @scrap.image.url.end_with?('.jpeg')
+      if EXIFR::JPEG::new(@scrap.image.file.file).gps.latitude.present? && EXIFR::JPEG::new(@scrap.image.file.file).gps.longitude.present?
+        @scrap.latitude  = EXIFR::JPEG::new(@scrap.image.file.file).gps.latitude
+        @scrap.longitude = EXIFR::JPEG::new(@scrap.image.file.file).gps.longitude
+      end
+    end
     if @scrap.save
       respond_to do |format|
         format.html { redirect_to scrap_folder_scraps_path(@scrap_folder), notice: '画像を投稿しました' }

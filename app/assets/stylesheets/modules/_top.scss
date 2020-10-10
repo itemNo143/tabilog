@@ -14,8 +14,6 @@ body{
   padding: 20px 80px;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
-  top: 0;
 
   &__logo a {
     text-decoration: none;
@@ -60,8 +58,9 @@ body{
 }
 
 article {
-  margin-top: 80px;
+  height: calc(100vh - 80px);
   width: 100vw;
+  overflow: auto;
 
   #app {
     width: 100%;

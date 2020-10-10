@@ -22,25 +22,23 @@
             ログアウト
 
   %section.main
-    %h2 gmap
     / form_withはデフォルトでremote: trueの挙動になります
-    = form_with url: map_request_path, method: :get do |f|
-      = f.text_field :address
-      = f.submit '地図表示'
-    #map{style: 'height: 700px;'}
+    = form_with url: map_request_path, method: :get, class: "address" do |f|
+      = f.text_field :address, placeholder: "検索", class: "address__search"
+      = f.submit '地図表示', class: "map_display_button"
+    #map
 
 
 :javascript
   let mapInstance //この変数はmap.js.erbでも使うのでタイプミスに注意
   let marker = []
-  var infoWindow = []
+  let infoWindow = []
   const japan = {
     lat: 36.204824, // 緯度
     lng: 138.252924 // 経度
   }
   // マーカーを立てる場所名・緯度・経度
-  var markerData = gon.scraps
-  console.log(markerData)
+  let markerData = gon.scraps
 
   function initMap(){
     mapInstance = new google.maps.Map(document.getElementById('map'), { // #mapに地図を埋め込む
@@ -57,7 +55,7 @@
 
       infoWindow[i] = new google.maps.InfoWindow({ // 吹き出しの追加
         content: `
-                  <div class="sample">
+                  <div class="image">
                     <img src="${markerData[i]['image_url']}">
                   </div>
                  ` // 吹き出しに表示する内容

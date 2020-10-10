@@ -1,7 +1,7 @@
 class MapsController < ApplicationController
 
   def index
-    @scraps     = Scrap.select('id', 'image', 'latitude', 'longitude')
+    @scraps     = Scrap.select('id', 'image', 'latitude', 'longitude').where.not(latitude: 'null', longitude: 'null')
     @coordinate = @scraps.map { |scrap| Hash[:id, scrap.id, :image_url, scrap.image.url, :latitude, scrap.latitude, :longitude, scrap.longitude] }
     gon.scraps  = @coordinate
   end
