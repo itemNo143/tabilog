@@ -76,7 +76,7 @@
               .FormField__label
                 = f.label :画像
               .FormField__PlanImage
-                = f.label :image do
+                = f.label :image, id: 'js-drop-area' do
                   = f.file_field :image, style: "display: none"
                   %p クリックまたは画像をドラッグアンドドロップ
             %input{name: "travel[user_ids][]", type: "hidden", value: current_user.id}

@@ -8,8 +8,6 @@ $(function () {
 
     //fileが選択された時に発火するイベント
     $('#travel_image').change(function () {
-      //選択したfileのオブジェクトをpropで取得
-      let files = $('input[type="file"]').prop('files')[0];
 
       $.each(this.files, function (i, file) {
         //FileReaderのreadAsDataURLで指定したFileオブジェクトを読み込む
@@ -26,14 +24,23 @@ $(function () {
           let html = `
                       <div class='album-image'>
                         <img src=${src}  alt="画像">
+                        <div class="background"></div>
+                        <i class="fas fa-trash"></i>
                       </div>
                      `
-          $('.FormField__PlanImage').append(html).children('label').remove()
+          $('.FormField__PlanImage').append(html).children('label').css('display', 'none')
         }
       })
     })
 
     //削除ボタンをクリックすると発火するイベント
-
+    $('.FormField__PlanImage').on('click', '.fa-trash', function () {
+      //inputタグに入ったファイルを削除
+      $('input[type=file]').val(null)
+      dataBox.clearData();
+      //プレビューを削除
+      $(this).parent().remove()
+      $('.FormField__PlanImage').children('label').show()
+    })
   })
 })

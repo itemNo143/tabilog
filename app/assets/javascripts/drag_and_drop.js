@@ -39,5 +39,17 @@ $(function () {
       $(e.target).find('[type="file"]').get()[0].files = e.originalEvent.dataTransfer.files;
       $(this).closest('form').trigger('submit');
     })
+
+
+    $('#js-drop-area').on('dragover', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }).on('drop', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      $(this).find('[type="file"]').get()[0].files = e.originalEvent.dataTransfer.files;
+      $('#travel_image').change()
+    })
+
   })
 })
