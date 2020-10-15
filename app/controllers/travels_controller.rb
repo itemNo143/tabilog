@@ -10,8 +10,7 @@ class TravelsController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
   def create
     @travel = Travel.new(travel_params)

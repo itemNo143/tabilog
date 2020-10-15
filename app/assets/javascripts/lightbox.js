@@ -30,23 +30,34 @@
         })
       }, b.prototype.build = function () {
         var b = this;
-        a("<div id='lightboxOverlay' class='lightboxOverlay'></div>" +
-          "<div id='lightbox' class='lightbox'>" +
-            "<div class='lb-outerContainer'>" +
-              "<div class='lb-container'>" +
-                "<img class='lb-image' src='' />" +
-                "<div class='lb-nav'><a class='lb-prev' href='' ></a><a class='lb-next' href='' ></a></div>" +
-                "<div class='lb-loader'><a class='lb-cancel'></a></div>" +
-              "</div>" +
-            "</div>" +
-            "<div class='lb-dataContainer'>" +
-              "<div class='lb-data'>" +
-                "<div class='lb-details'><span class='lb-caption'></span><span class='lb-number'></span></div>" +
-                "<div class='lb-closeContainer'><a class='lb-close'></a></div>" +
-              "</div>" +
-            "</div>" +
-          "</div>")
-          .appendTo(a("body")), this.$lightbox = a("#lightbox"), this.$overlay = a("#lightboxOverlay"), this.$outerContainer = this.$lightbox.find(".lb-outerContainer"), this.$container = this.$lightbox.find(".lb-container"), this.containerTopPadding = parseInt(this.$container.css("padding-top"), 10), this.containerRightPadding = parseInt(this.$container.css("padding-right"), 10), this.containerBottomPadding = parseInt(this.$container.css("padding-bottom"), 10), this.containerLeftPadding = parseInt(this.$container.css("padding-left"), 10), this.$overlay.hide().on("click", function () {
+        a(`
+          <div id='lightboxOverlay' class='lightboxOverlay'></div>
+          <div id='lightbox' class='lightbox'>
+            <div class='lb-outerContainer'>
+              <div class='lb-container'>
+                <img class='lb-image' src='' />
+                <div class='lb-nav'>
+                  <a class='lb-prev' href='' ></a>
+                  <a class='lb-next' href='' ></a>
+                </div>
+                <div class='lb-loader'>
+                  <a class='lb-cancel'></a>
+                </div>
+              </div>
+            </div>
+            <div class='lb-dataContainer'>
+              <div class='lb-data'>
+                <div class='lb-details'>
+                  <span class='lb-caption'></span>
+                  <span class='lb-number'></span>
+                </div>
+                <div class='lb-closeContainer'>
+                  <a class='lb-close'></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          `).appendTo(a("body")), this.$lightbox = a("#lightbox"), this.$overlay = a("#lightboxOverlay"), this.$outerContainer = this.$lightbox.find(".lb-outerContainer"), this.$container = this.$lightbox.find(".lb-container"), this.containerTopPadding = parseInt(this.$container.css("padding-top"), 10), this.containerRightPadding = parseInt(this.$container.css("padding-right"), 10), this.containerBottomPadding = parseInt(this.$container.css("padding-bottom"), 10), this.containerLeftPadding = parseInt(this.$container.css("padding-left"), 10), this.$overlay.hide().on("click", function () {
           return b.end(), !1
         }), this.$lightbox.hide().on("click", function (c) {
           return "lightbox" === a(c.target).attr("id") && b.end(), !1

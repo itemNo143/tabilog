@@ -25,7 +25,7 @@ class ScrapFoldersController < ApplicationController
   end
 
   def destroy
-    @travel = current_user.travel_ids
+    @travel = @scrap_folder.travel_id
     if @scrap_folder.destroy
       redirect_to travel_scrap_folders_path(@travel), notice: '削除しました'
     else
