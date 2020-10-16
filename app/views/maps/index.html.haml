@@ -1,0 +1,75 @@
+.wrapper
+  %section.SideBar
+    .logo
+      = link_to 'TabiLog', travels_path
+    .MenuList
+      %ul
+        %li.selected
+          = link_to travels_path do
+            = icon('fas', 'book', class: "MenuList--icon")
+            アルバム
+        %li
+          = link_to maps_path, class: 'selected__btn' do
+            = icon('fas', 'map-marked-alt', class: "MenuList--icon")
+            Map
+        %li
+          = link_to user_path(current_user) do
+            = icon('far', 'user-circle', class: "MenuList--icon")
+            プロフィール
+        %li
+          = link_to destroy_user_session_path, method: :delete, class: 'logout' do
+            = icon('fas', 'door-open', class: "MenuList--icon")
+            ログアウト
+
+  %section.main
+    / form_withはデフォルトでremote: trueの挙動になります
+    = form_with url: map_request_path, method: :get, class: "address" do |f|
+      = f.text_field :address, placeholder: "検索", class: "address__search"
+      = f.submit '地図表示', class: "map_display_button"
+    #map
+
+
+:javascript
+  let mapInstance //この変数はmap.js.erbでも使うのでタイプミスに注意
+  let marker = []
+  let infoWindow = []
+  const japan = {
+    lat: 36.204824, // 緯度
+    lng: 138.252924 // 経度
+  }
+  // マーカーを立てる場所名・緯度・経度
+  let markerData = gon.scraps
+
+  function initMap(){
+    mapInstance = new google.maps.Map(document.getElementById('map'), { // #mapに地図を埋め込む
+      center: japan, // 地図の中心を指定
+      zoom: 5.2      // 地図のズームを指定
+    });
+    // マーカー毎の処理
+    for (var i = 0; i < markerData.length; i++) {
+      markerLatLng = new google.maps.LatLng({lat: markerData[i]['latitude'], lng: markerData[i]['longitude']}); // 緯度経度のデータ作成
+      marker[i] = new google.maps.Marker({ // マーカーの追加
+        position: markerLatLng, // マーカーを立てる位置を指定
+        map: mapInstance        // マーカーを立てる地図を指定
+      });
+
+      infoWindow[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+        content: `
+                  <div class="image">
+                    <img src="${markerData[i]['image_url']}">
+                  </div>
+                 ` // 吹き出しに表示する内容
+      });
+
+      markerEvent(i); // マーカーにクリックイベントを追加
+    }
+
+  }
+  // マーカーにクリックイベントを追加
+  function markerEvent(i) {
+    marker[i].addListener('click', function() { // マーカーをクリックしたとき
+      infoWindow[i].open(map, marker[i]); // 吹き出しの表示
+    });
+  }
+%script{:async => "", :defer => "defer", :src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyBtt5HknTBDDdpzaRaBsQtxzhHeu8hCdmo&callback=initMap"}
+

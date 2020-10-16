@@ -36,4 +36,12 @@ class User < ApplicationRecord
     admin.validates :email, uniqueness: { case_sensitive: true }, format: { with: VALID_EMAIL_REGEX, message: 'のフォーマットが不適切です' }
     admin.validates :password, on: :create, length: { in: 7..128 }, format: { with: VALID_PASSWORD_REGEX, message: 'は英字と数字両方を含むパスワードを設定してください' }
   end
+
+  def self.guest
+    find_or_create_by!(name: 'guest', email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
+    end
+  end
+
 end

@@ -1,14 +1,12 @@
 .wrapper
   = render 'scrap_folders/side-bar'
 
-  %section.ScrapMain
-    = form_with model: [@scrap_folder, @scrap], id: "ScrapForm", local: true do |f|
+  %section.ScrapMain#js-dropzone
+    = form_with model: [@scrap_folder, @scrap], class: "ScrapForm", local: true do |f|
       = f.label :image, class: 'AddImage' do
         = f.file_field :image, class: "AddImage__file"
         = icon('fas', 'plus-circle', class: "AddImage--icon")
         %p 画像を追加
-
-    .UploadGuide
     %header.ScrapHeader
       = link_to :back do
         %i.fas.fa-chevron-left
@@ -16,6 +14,11 @@
       %i.fas.fa-wrench.ModalTrigger
     .scrap
       = render @scraps
+    = form_with model: [@scrap_folder, @scrap],class: "ScrapForm", local: true do |f|
+      = f.label :image, class: 'overlay-area', id: 'js-overlay-area' do
+        = f.file_field :image, style: "display: none"
+        .overlay-text#js-overlay-text
+          %p ここにドラッグ&ドロップしてください
 
 
   -#モーダルウィンドウ
@@ -65,4 +68,3 @@
                     $(this).parents('form').submit();
                 }
             });
-

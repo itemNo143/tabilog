@@ -3,6 +3,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
+  process :get_exif_info
+
+  def get_exif_info
+    require 'exifr/jpeg'
+  end
 
   # Choose what kind of storage to use for this uploader:
   storage :file

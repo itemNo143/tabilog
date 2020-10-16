@@ -4,7 +4,8 @@
 #
 #  id              :bigint           not null, primary key
 #  image           :string(255)      not null
-#  memo            :text(65535)
+#  latitude        :float(24)
+#  longitude       :float(24)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  scrap_folder_id :bigint

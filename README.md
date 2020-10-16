@@ -71,7 +71,8 @@
 | Column       | Type       | Options                        |
 | ------------ | ---------- | ------------------------------ |
 | image        | string     | null: false                    |
-| memo         | text       |                                |
+| latitude     | float      |                                |
+| longitude    | float      |                                |
 | scrap_folder | references | null: false, foreign_key: true |
 | user         | references | null: false, foreign_key: true |
 <br>

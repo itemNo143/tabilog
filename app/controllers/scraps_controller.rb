@@ -10,6 +10,12 @@ class ScrapsController < ApplicationController
 
   def create
     @scrap = @scrap_folder.scraps.new(scrap_params)
+    if @scrap.image.url.end_with?('.jpeg')
+      if EXIFR::JPEG::new(@scrap.image.file.file).gps.latitude.present? && EXIFR::JPEG::new(@scrap.image.file.file).gps.longitude.present?
+        @scrap.latitude  = EXIFR::JPEG::new(@scrap.image.file.file).gps.latitude
+        @scrap.longitude = EXIFR::JPEG::new(@scrap.image.file.file).gps.longitude
+      end
+    end
     if @scrap.save
       respond_to do |format|
         format.html { redirect_to scrap_folder_scraps_path(@scrap_folder), notice: '画像を投稿しました' }
@@ -21,6 +27,7 @@ class ScrapsController < ApplicationController
   end
 
   def destroy
+    # TODO 削除機能
     @scrap.destroy
     respond_to do |format|
       format.html { redirect_to scraps_url, notice: 'Scrap was successfully destroyed.' }
@@ -39,6 +46,6 @@ class ScrapsController < ApplicationController
   end
 
   def scrap_params
-    params.require(:scrap).permit(:image, :memo).merge(user_id: current_user.id, scrap_folder_id: params[:scrap_folder_id])
+    params.require(:scrap).permit(:image, :latitude, :longitude).merge(user_id: current_user.id, scrap_folder_id: params[:scrap_folder_id])
   end
 end
