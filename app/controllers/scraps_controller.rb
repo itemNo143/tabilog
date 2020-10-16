@@ -27,6 +27,7 @@ class ScrapsController < ApplicationController
   end
 
   def destroy
+    # TODO 削除機能
     @scrap.destroy
     respond_to do |format|
       format.html { redirect_to scraps_url, notice: 'Scrap was successfully destroyed.' }

@@ -33,7 +33,7 @@
               - if travel.image.present?
                 = image_tag travel.image.url, class: 'album__cover--image'
               - else
-                = image_tag("滝.jpg", alt: "背景", class: "album__cover--image")
+                = image_tag("旅のイメージ.jpg", alt: "背景", class: "album__cover--image")
             .album__info
               .album__info__title
                 = travel.name
@@ -83,4 +83,3 @@
           %footer
             .save
               = f.submit "保存", class: 'save_button'
--# TODO 画像選択したらその選択した画像が表示されるようにする。
