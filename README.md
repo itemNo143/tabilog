@@ -45,8 +45,6 @@ TabiLogは旅の思い出を記録するためのアプリです。
 
 ## ● DB設計
 
----
-
 ## usersテーブル
 
 | Column   | Type   | Options     |
