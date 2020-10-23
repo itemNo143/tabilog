@@ -1,6 +1,53 @@
-# TabiLog DB 設計
+# TabiLog
 
-## users テーブル
+## App URL
+
+（仮）  
+https://heroku-deploy-tabilog.herokuapp.com/
+
+## ● 概要
+
+TabiLogは旅の思い出を記録するためのアプリです。
+
+<br>
+
+## ● 機能一覧
+
+- 写真をファイルごとに保存できます。
+- 地図上に保存した写真の撮影した場所を表示できます。マーカーをクリックすればその写真が表示されます。
+- 写真をドラッグ＆ドロップすればAjax通信で投稿できます。
+
+<br>
+
+## ● 技術一覧
+
+- AWS
+- Docker
+- Capistrano（自動デプロイ）
+- MySQL（データベース管理システム）
+- Google Maps API
+- 開発環境
+  - 言語
+    - Ruby
+      - Ruby on Rails
+    - JavaScript
+      - jQuery
+  - macOS
+  - RubyMine（テキストエディター）
+- 主な使用ライブラリ
+  - device（認証機能）
+  - carrierwave（画像アップロード）
+  - mini_magick（画像リサイズ）
+  - font-awesome-sass（使用アイコン）
+  - exifr（写真からexif情報を取得）
+
+<br>
+
+## ● DB設計
+
+---
+
+## usersテーブル
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
@@ -17,7 +64,7 @@
 
 ---
 
-## travels テーブル
+## travelsテーブル
 
 | Column     | Type   | Options     |
 | ---------- | ------ | ----------- |
@@ -36,7 +83,7 @@
 
 ---
 
-## travels_users テーブル
+## travels_usersテーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
@@ -51,7 +98,7 @@
 
 ---
 
-## scrap_folders テーブル
+## scrap_foldersテーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
@@ -66,7 +113,7 @@
 
 ---
 
-## scraps テーブル
+## scrapsテーブル
 
 | Column       | Type       | Options                        |
 | ------------ | ---------- | ------------------------------ |
