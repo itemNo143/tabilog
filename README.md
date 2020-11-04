@@ -2,7 +2,6 @@
 
 ## App URL
 
-（仮）  
 https://heroku-deploy-tabilog.herokuapp.com/
 
 ## ● 概要
@@ -21,9 +20,8 @@ TabiLogは旅の思い出を記録するためのアプリです。
 
 ## ● 技術一覧
 
-- AWS
+- Heroku
 - Docker
-- Capistrano（自動デプロイ）
 - MySQL（データベース管理システム）
 - Google Maps API
 - 開発環境
