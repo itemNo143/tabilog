@@ -1,0 +1,31 @@
+version: '3'
+
+volumes: 
+  db-data:
+
+services: 
+  web:
+    build: .
+    ports: 
+      - '3001:3000'
+    volumes: 
+      - '.:/tabilog'
+    environment: 
+      - 'DATABASE_PASSWORD=mysql'
+    tty: true
+    stdin_open: true
+    depends_on: 
+      - db
+    links: 
+      - db
+  
+  db:
+    image: mysql:5.6
+    ports:
+      - "4306:3306"
+    volumes: 
+      - 'db-data:/var/lib/mysql'
+    environment:
+      - 'MYSQL_ROOT_PASSWORD=password'
+      - 'MYSQL_DATABASE=root'
+      - 'MYSQL_USER=mysql'
