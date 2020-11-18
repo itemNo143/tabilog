@@ -34,6 +34,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0.0.beta2'
   gem 'rails-controller-testing'
   gem 'factory_bot_rails'
+
+  gem 'bullet'
 end
 
 group :development do
@@ -48,8 +50,6 @@ group :development do
   gem 'better_errors'
   # better_errorsの画面上にirb/pry(PERL)を表示する
   gem 'binding_of_caller'
-
-  gem 'bullet'
 
   gem 'annotate'
 
