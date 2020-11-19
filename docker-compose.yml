@@ -12,6 +12,8 @@ services:
       - '.:/tabilog'
     environment: 
       - 'DATABASE_PASSWORD=mysql'
+      - 'AWS_ACCESS_KEY_ID=${Access_key_ID}'
+      - 'AWS_SECRET_ACCESS_KEY=${Secret_access_key}'
     tty: true
     stdin_open: true
     depends_on: 

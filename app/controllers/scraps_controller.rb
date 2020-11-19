@@ -11,7 +11,7 @@ class ScrapsController < ApplicationController
   def create
     @scrap = @scrap_folder.scraps.new(scrap_params)
     if @scrap.image.url.end_with?('.jpeg')
-      if EXIFR::JPEG::new(@scrap.image.file.file).gps.latitude.present? && EXIFR::JPEG::new(@scrap.image.file.file).gps.longitude.present?
+      if EXIFR::JPEG::new(@scrap.image.file.file).gps.present?
         @scrap.latitude  = EXIFR::JPEG::new(@scrap.image.file.file).gps.latitude
         @scrap.longitude = EXIFR::JPEG::new(@scrap.image.file.file).gps.longitude
       end
