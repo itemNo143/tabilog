@@ -23,6 +23,7 @@ TabiLogは旅の思い出を記録するためのアプリです。
 - Heroku
 - Docker
 - Travis CI
+- S3
 - MySQL
 - Google Maps API
 - 開発環境
@@ -39,6 +40,7 @@ TabiLogは旅の思い出を記録するためのアプリです。
   - mini_magick（画像リサイズ）
   - font-awesome-sass（使用アイコン）
   - exifr（写真からexif情報を取得）
+  - bullet（N+1問題の検出）
 
 <br>
 
